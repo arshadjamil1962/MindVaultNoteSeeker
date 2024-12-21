@@ -1,13 +1,14 @@
 # Mind Vault Note Seeker
- Your personal assistant chrome extension for securely storing, organizing, and finding your thoughts, knowledge, and resources, all in one place.\
+ Your personal assistant chrome extension for securely storing, organizing, and finding your thoughts, knowledge, and resources, all in one place.
 
 ## Installation
 your Chrome Extension Application Source files are wraped inside `MindVaultNoteSeeker` folder.\
 Copy or UnZip the source folder in your `desired Drive`.\
-`BackEnd Server`
+`BackEnd Server`\
 open `command` prompt, change your directory to `DatabaseSQLite` folder inside of `MindVaultNoteSeeker`\
 type and run `node server.js` command to start `BackEnd` server. This server remains active all time.\
-`Extension Application`
+The server uses Port 3009 for communication.\
+`Extension Application`\
 Open browser, go to chrome `Manage Extension` option, click on `Load Unpacked` button, choose `MindVaultNoteSeeker` Source folder and load Extension Application.\
 Your application is ready to use.
 
@@ -16,21 +17,21 @@ Keep the BackEnd server runing all time, when using extension application.
 
 
 ## `Mind Vault Notes Registeration`
-Imagine you're browsing your favorite website and come across a brilliant idea or important information.\
-With Mind Vault Note Seeker, capturing that is as simple as highlighting the text, right-clicking, and selecting the "Mind Vault Note Addition" option.\
+Imagine you're browsing your favorite website and come across a brilliant idea or important information.
+With Mind Vault Note Seeker, capturing that is as simple as highlighting the text, right-clicking, and selecting the "Mind Vault Note Addition" option.
 
 ## Buttons Displayed at Startup
-Clicking Mind Valut Note Seeker Extension will be presented with the following options:\
+Clicking Mind Valut Note Seeker Extension will be presented with the following options:
 
-`Help`: Opens help content to guide you through the extension's usage.\
-`Note Seeker - Mind Valut`: Provides an interface Screen to View Notes Collection.\
+`Help`: Opens help content to guide you through the extension's usage.
+`Note Seeker - Mind Valut`: Provides an interface Screen to View Notes Collection.
 
 ## `Mind Vault Notes Collection View`
 Your notes are displayed in a neat grid of four(4) per page.\
 Delete Button next to each note, allow you to remove that note from the collection on confirmation.\
 A dialog box appears with Notes Information, confirming the Delete Request.\
 On Confirmation said Note be deleted from the Collection.\
-click any of the Note to visualize the Details.\
+click any of the Note to visualize the Details.
 
 ## `Navigation`
 Navigate through your collection effortlessly using the pagination controls at the bottom of screen.\
@@ -64,7 +65,7 @@ The Database file is named `MindVaultNoteSeeker.db` and its location is `mindVau
 
 ## SQLite Database Maintenance
 `Data` in SQLite database in handled within extension application.\
-`Tags and Keywords` addition is based on Entry and their existance in the table. On Entry, any non-existing tag or keyword be added in respective tabld. No Deletion.
+`Tags and Keywords` addition is based on Entry and their existance in the table. On Entry, any non-existing tag or keyword be added in respective tabld. No Deletion.\
 `Notes addition` is based on Additional Notes Entry via Capturing screen.\
 `Notes Deletion` is accessable via Collecction View screen by clicking on "Delete-Icon" and upon confirmation, respective Note be deleted from Collection.\ 
 
@@ -73,4 +74,4 @@ The Database file is named `MindVaultNoteSeeker.db` and its location is `mindVau
 `Tags and Keywords` classifies the Note's content and has similar importance as "Title" that enhance searching.\
 `Closing the browser` without saving, in Entry Screen, results in a loss of current additional screen information. Rest of the data remains intact.\
 Currently `SQLite database` is set up locally, so it can not be accessed from another laptop or computer.\
-
+`Video` file named "MindVaultNooteSeekerProject" is included for ready reference.
