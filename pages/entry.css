@@ -1,0 +1,113 @@
+.readonly-field {
+  background-color: #f1f1f1 !important;
+  /* Light gray background */
+  border: 1px solid #ccc;
+  /* Subtle border */
+  color: #6c757d;
+  /* Gray text color */
+}
+
+.version {
+  font-size: 10px;
+  color: black;
+}
+
+/* Style for the tag list */
+.tags-list {
+  list-style-type: none;
+  /* Removes bullet points */
+  padding: 0;
+  margin-top: 10px;
+  margin-left: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  /* Space between tags */
+}
+
+.tags-list li {
+  background-color: #e9ecef;
+  padding: 5px 10px;
+  border-radius: 15px;
+  display: inline-block;
+  font-size: 14px;
+  color: #495057;
+}
+
+.tags-list li .remove-tag {
+  margin-left: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #dc3545;
+}
+
+.tags-list li .remove-tag:hover {
+  color: #a71d2a;
+}
+
+/* Style for the keywords list */
+.keywords-list {
+  list-style-type: none;
+  /* Removes bullet points */
+  padding: 0;
+  margin-top: 10px;
+  margin-left: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  /* Space between tags */
+}
+
+.keywords-list li {
+  background-color: #e9ecef;
+  padding: 5px 10px;
+  border-radius: 15px;
+  display: inline-block;
+  font-size: 14px;
+  color: #495057;
+}
+
+.keywords-list li .remove-keyword {
+  margin-left: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #dc3545;
+}
+
+.keywords-list li .remove-keyword:hover {
+  color: #a71d2a;
+}
+
+
+/* Style for the crossReferences list */
+.crossReferences-list {
+  list-style-type: none;
+  /* Removes bullet points */
+  padding: 0;
+  margin-top: 10px;
+  margin-left: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  /* Space between tags */
+}
+
+.crossReferences-list li {
+  background-color: #e9ecef;
+  padding: 5px 10px;
+  border-radius: 15px;
+  display: inline-block;
+  font-size: 14px;
+  color: #495057;
+}
+
+.crossReferences-list li .remove-reference {
+  margin-left: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #dc3545;
+}
+
+.crossReferences-list li .remove-reference:hover {
+  color: #a71d2a;
+}

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mind Vault Seeker- Notes AddOn</title>
+  <!-- StyleSheet CSS -->
+  <link rel="stylesheet" href="entry.css">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../libs/bootstrap/css/bootstrap.min.css">
+  <!-- Bootstrap Icons (CDN) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+</head>
+
+<body>
+  <div class="container">
+    <!-- Hero Header -->
+    <div
+      class="d-flex justify-content-between align-items-center text-center p-1 mb-2 border rounded-3 bg-info text-white">
+      <div class="text-start">
+        <i class="bi bi-patch-question-fill" id="helpCapture" style="cursor: pointer; font-size: x-large;"></i>
+      </div>
+      <div class="flex-grow-1 text-center">
+        <h5 class="m-0">
+          <i class="bi bi-book-half"></i> Mind Vault Notes <sub class="version">Ver 1.00</sub>
+        </h5>
+      </div>
+    </div>
+
+    <div class="p-4 mb-4 border rounded-3 bg-light">
+      <form id="noteForm">
+        <!-- Note Information Row -->
+        <div class="row mb-3">
+          <div class="col-md-9">
+            <label for="noteSource" class="form-label"><i class="bi bi-link-45deg"></i> Source Reference</label>
+            <input type="text" id="noteSource" class="form-control readonly-field" readonly />
+          </div>
+          <div class="col-md-3">
+            <label for="noteDateTime" class="form-label"><i class="bi bi-calendar-plus"></i> Originated On</label>
+            <input type="text" id="noteDateTime" class="form-control readonly-field" readonly />
+          </div>
+
+          <!-- Note Abstract -->
+          <div class="row mb-3">
+            <div class="col-12">
+              <label for="noteAbstract" class="form-label">Summary/Abstract</label>
+              <textarea id="noteAbstract" class="form-control readonly-field" readonly rows="4"></textarea>
+            </div>
+          </div>
+
+          <!-- Note Title and Priority -->
+          <div class="row mb-3">
+            <!-- Note Title -->
+            <div class="col-9">
+              <label for="noteTitle" class="form-label">Title <span class="text-danger">*</span></label>
+              <input type="text" id="noteTitle" class="form-control" placeholder="Enter Note Title ..." />
+              <p id="noteTitleError" class="text-danger d-none">Title is Required.</p>
+            </div>
+            <div class="col-3">
+              <label class="form-label">Priority</label>
+              <div class="d-flex justify-content-start align-items-center">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="notePriority" id="notePriorityHigh" value="High">
+                  <label class="form-check-label" for="notePriorityHigh">High</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="notePriority" id="notePriorityMedium"
+                    value="Medium">
+                  <label class="form-check-label" for="notePriorityMedium">Medium</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="notePriority" id="notePriorityLow" value="Low">
+                  <label class="form-check-label" for="notePriorityLow">Low</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Note Tags -->
+          <div class="row mb-3">
+            <div class="col-md-12">
+              <div class="d-flex align-items-center mb-2">
+                <label for="noteTagsInput" class="form-label me-2">
+                  <i class="bi bi-tags"></i> Tags <span class="text-danger">*</span>
+                </label>
+                <input id="noteTagsInput" class="form-control" list="pageTagsOptions"
+                  style="width: auto; min-width: 200px;" placeholder="Add Tags..." />
+                <datalist id="pageTagsOptions"></datalist>
+                <ul id="noteTagsList" class="tags-list"></ul>
+              </div>
+              <p id="noteTagsError" class="text-danger d-none">Please add at least one Tag.</p>
+            </div>
+          </div>
+
+          <!-- Note Keywords -->
+          <div class="row mb-3">
+            <div class="col-md-12">
+              <div class="d-flex align-items-center mb-2">
+                <label for="noteKeywordsInput" class="form-label me-2">
+                  <i class="bi bi-key"></i> Keywords <span class="text-danger">*</span>
+                </label>
+                <input id="noteKeywordsInput" class="form-control" list="pageKeywordsOptions"
+                  style="width: auto; min-width: 200px;" placeholder="Add Keywords..." />
+                <datalist id="pageKeywordsOptions"></datalist>
+                <ul id="noteKeywordsList" class="keywords-list"></ul>
+              </div>
+              <p id="noteKeywordsError" class="text-danger d-none">Please add at least one Keyword.</p>
+            </div>
+          </div>
+
+          <!-- Note References -->
+          <div class="row mb-3">
+            <div class="col-md-12">
+              <div class="d-flex align-items-center mb-2">
+                <label for="noteCrossReferencesInput" class="form-label me-2">
+                  <i class="bi bi-bookmarks"></i> Reference
+                </label>
+                <input id="noteCrossReferencesInput" class="form-control" list="pageCrossReferencesOptions"
+                  style="width: auto; min-width: 200px;" placeholder="Add Cross Reference..." />
+                <datalist id="pageCrossReferencesOptions">
+                  <!-- Options will be dynamically populated -->
+                </datalist>
+                <ul id="noteCrossReferencesList" class="crossReferences-list"></ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="row mb-3">
+            <div class="col-12 text-center">
+              <button type="button" id="saveNoteButton" class="btn btn-primary">Save Note</button>
+              <button type="button" id="cancelButton" class="btn btn-secondary ms-2">Cancel</button>
+            </div>
+          </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Help Modal -->
+  <div class="modal fade" id="helpCaptureModal" tabindex="-1" aria-labelledby="helpCaptureModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header bg-dark text-white align-items-center">
+          <div class="d-flex flex-column w-100">
+            <!-- Main Modal Title -->
+            <h5 class="modal-title mb-3 text-center" id="helpCaptureModalLabel">
+              <i class="bi bi-patch-question-fill"></i> Mind Vault Note Seeker - Registration
+            </h5>
+          </div>
+          <!-- Close Button -->
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body">
+          <!-- Help Content -->
+          <div id="helpCaptureModalContent">
+            <!-- Content will be dynamically loaded here -->
+            <p class="text-muted text-center">Loading help content...</p>
+          </div>
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="modal-footer bg-dark d-flex justify-content-end">
+          <button id="closeHelpCollectionModalBtn" class="btn btn-secondary" data-bs-dismiss="modal" style="border: none;
+          color: white;
+          padding: 10px 30px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          cursor: pointer;
+          background-color: #fb2303;
+          border-radius: 20px;
+          box-shadow: 5px 5px 4px #888888;">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="../libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script type="module" src="entry.js"></script>
+</body>
+
+</html>

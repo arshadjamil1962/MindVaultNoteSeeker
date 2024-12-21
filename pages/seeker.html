@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mind Vault Seeker Notes</title>
+  <!-- Link to external CSS file -->
+  <link rel="stylesheet" href="seeker.css">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../libs/bootstrap/css/bootstrap.min.css">
+  <!-- Bootstrap Icons (CDN) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+</head>
+
+<body>
+  <div class="text-center p-2 border rounded-3 bg-primary text-white">
+    <h1><i class="bi bi-book-half"></i> Mind Vault Note Seeker <sub class="version">Ver 1.00</sub></h1>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Filter Section -->
+      <div class="col-md-3 bg-light p-3">
+        <div class="text-center p-1 mb-2 border rounded-3 bg-info text-white">
+          <h5><i class="bi bi-funnel"></i> Filters</h5>
+        </div>
+
+        <form id="filterForm">
+          <!-- Title Filter -->
+          <div class="mb-3 d-flex align-items-center">
+            <label for="filterTitle" class="form-label me-2">Title:</label>
+            <input type="text" id="filterTitle" class="form-control" style="width: auto; flex-grow: 1;"
+              placeholder="Title Includes ..." />
+          </div>
+
+          <!-- Abstract Filter -->
+          <div class="mb-3 d-flex align-items-center">
+            <label for="filterAbstract" class="form-label me-2">Abstract:</label>
+            <input type="text" id="filterAbstract" class="form-control" style="width: auto; flex-grow: 1;"
+              placeholder="Abstract Includes..." />
+          </div>
+
+          <!-- Date Range Filter -->
+          <div class="mb-3 d-flex align-items-center">
+            <label for="filterDateFrom" class="form-label me-2">From Date:</label>
+            <input type="date" id="filterDateFrom" class="form-control me-3" style="width: auto;" />
+          </div>
+          <div class="mb-3 d-flex align-items-center">
+            <label for="filterDateTo" class="form-label me-2">To Date:</label>
+            <input type="date" id="filterDateTo" class="form-control" style="width: auto;" />
+          </div>
+
+          <!-- Note Tags Filter -->
+          <div class="row mb-3">
+            <div class="col-md-12">
+              <div class="d-flex align-items-center mb-2">
+                <label for="filterTags" class="form-label me-2">
+                  <i class="bi bi-tags"></i> Tags:
+                </label>
+                <input id="filterTags" class="form-control" list="pageTagsOptions" style="width: auto;"
+                  placeholder="Search Tags..." />
+                <datalist id="pageTagsOptions"></datalist>
+              </div>
+            </div>
+          </div>
+
+          <!-- Note Keywords Filter -->
+          <div class="row mb-3">
+            <div class="col-md-12">
+              <div class="d-flex align-items-center mb-2">
+                <label for="filterKeywords" class="form-label me-2">
+                  <i class="bi bi-key"></i> Words:
+                </label>
+                <input id="filterKeywords" class="form-control" list="pageKeywordsOptions" style="width: auto; "
+                  placeholder="Search Keywords..." />
+                <datalist id="pageKeywordsOptions"></datalist>
+              </div>
+            </div>
+          </div>
+
+          <!-- Note Priority Filter -->
+          <div class="row mb-3">
+            <div class="col-md-12">
+              <div class="d-flex align-items-center mb-2">
+                <label for="filterPriority" class="form-label me-2">
+                  <i class="bi bi-star"></i> Priority:
+                </label>
+                <input id="filterPriority" class="form-control" list="pagePriorityOptions" style="width: auto; "
+                  placeholder="Search Priority..." />
+                <datalist id="pagePriorityOptions"></datalist>
+              </div>
+            </div>
+          </div>
+
+          <!-- Filters Button -->
+          <div class="d-flex align-items-center justify-content-between text-center">
+            <button type="button" id="applyFilters" class="btn btn-success w-45 me-2">Apply Filters</button>
+            <button type="button" id="clearFilters" class="btn btn-warning w-45 ms-2">Clear All</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Information Section -->
+      <div class="col-md-9 p-3">
+        <div
+          class="d-flex justify-content-between align-items-center text-center p-1 mb-2 border rounded-3 bg-info text-white">
+          <div class="text-start">
+            <i class="bi bi-patch-question-fill" id="helpContent" style="cursor: pointer; font-size: x-large;"></i>
+          </div>
+          <div class="flex-grow-1 text-center">
+            <h5 class="m-0">
+              <i class="bi bi-journal-bookmark"></i> Notes Collection
+            </h5>
+          </div>
+        </div>
+
+        <!-- Master Records -->
+        <div id="masterRecordsContainer" class="mb-2">
+          <!-- Records will be dynamically populated -->
+        </div>
+
+        <!-- Pagination Controls -->
+        <div id="paginationControls" class="d-flex justify-content-around align-items-center mt-2">
+        </div>
+
+        <!-- Detail Modal -->
+        <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header bg-dark text-white align-items-center">
+                <div class="d-flex flex-column w-100">
+                  <!-- Main Modal Title -->
+                  <h5 class="modal-title mb-3 text-center" id="detailModalLabel">
+                    <i class="bi bi-journal-bookmark"></i> Notes Information
+                  </h5>
+                  <!-- Title Section -->
+                  <div class="d-flex align-items-center justify-content-between">
+                    <!-- Title as a badge -->
+                    <span id="detailTitle" class="badge bg-info text-dark flex-grow-1 text-start me-3"></span>
+
+                    <!-- Date as a badge -->
+                    <span id="detailDate" class="badge bg-light text-dark me-3"></span>
+
+                    <!-- Priority as a badge -->
+                    <span id="detailPriority" class="badge bg-dark"></span>
+                  </div>
+                </div>
+                <!-- Close Button -->
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+              </div>
+
+              <div class="modal-body">
+                <!-- Details Content -->
+                <!-- Source -->
+                <p><strong>Source:</strong> <a id="detailSource" href="#" target="_blank"></a></p>
+
+                <!-- Abstract -->
+                <p><strong>Abstract:</strong> <span id="detailAbstract"></span></p>
+
+                <!-- Tags -->
+                <div class="d-flex align-items-center mb-1">
+                  <strong class="me-2">Tags:</strong>
+                  <div id="detailTags" class="d-flex flex-wrap gap-2"></div>
+                </div>
+
+                <!-- Keywords -->
+                <div class="d-flex align-items-center mb-1">
+                  <strong class="me-2">Keywords:</strong>
+                  <div id="detailKeywords" class="d-flex flex-wrap gap-2"></div>
+                </div>
+
+                <!-- Cross References Section -->
+                <p><strong>Cross References:</strong></p>
+                <!-- Cross References Accordion -->
+                <div id="detailCrossReferences" class="accordion" role="tablist">
+                  <!-- Accordion items will be dynamically populated here -->
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer bg-dark d-flex justify-content-between">
+              <button type="button" id="closeBtn" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- Help Modal -->
+  <div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header bg-dark text-white align-items-center">
+          <div class="d-flex flex-column w-100">
+            <!-- Main Modal Title -->
+            <h5 class="modal-title mb-3 text-center" id="helpModalLabel">
+              <i class="bi bi-patch-question-fill"></i> Mind Vault Note Seeker
+            </h5>
+          </div>
+          <!-- Close Button -->
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body">
+          <!-- Help Content -->
+          <div id="helpModalContent">
+            <!-- Content will be dynamically loaded here -->
+            <p class="text-muted text-center">Loading help content...</p>
+          </div>
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="modal-footer bg-dark d-flex justify-content-end">
+          <button id="closeHelpModalBtn" class="btn btn-secondary" data-bs-dismiss="modal" style="border: none;
+        color: white;
+        padding: 10px 30px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #fb2303;
+        border-radius: 20px;
+        box-shadow: 5px 5px 4px #888888;">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="../libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script type="module" src="seeker.js"></script>
+</body>
+
+</html>

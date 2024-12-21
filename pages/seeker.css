@@ -1,0 +1,89 @@
+.version {
+  font-size: 10px;
+  color: black;
+}
+
+.container-fluid {
+  font-family: Arial, sans-serif;
+}
+
+.bg-light {
+  background-color: #f8f9fa;
+}
+
+#masterRecordsContainer {
+  /* max-height: 300px; */
+  /* Adjust based on the layout */
+  overflow-y: auto;
+}
+
+.record {
+  display: block;
+  padding: 0.5rem;
+}
+
+.record .fw-bold {
+  max-width: 70%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.record .text-truncate {
+  max-width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.record .badge {
+  white-space: nowrap;
+}
+
+.record.bg-light {
+  background-color: #f8f9fa !important;
+  /* Light background for selected record */
+}
+
+#detailSection {
+  background-color: #ffffff;
+}
+
+#detailTags button,
+#detailKeywords button {
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  padding: 0.4rem 0.75rem;
+  color: #495057;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+#detailTags button:hover,
+#detailKeywords button:hover {
+  background-color: #e9ecef;
+  border-color: #adb5bd;
+  color: #212529;
+}
+
+#detailCrossReferences div {
+  transition: background-color 0.3s;
+}
+
+#detailCrossReferences div:hover {
+  background-color: #e9ecef;
+  /* Light hover effect */
+  cursor: pointer;
+}
+
+#detailCrossReferences .text-decoration-underline {
+  color: #0d6efd;
+  /* Default link color */
+  text-decoration: underline;
+}
+
+#detailCrossReferences .text-muted {
+  font-size: 0.9rem;
+}
