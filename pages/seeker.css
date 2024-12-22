@@ -14,7 +14,8 @@
 #masterRecordsContainer {
   /* max-height: 300px; */
   /* Adjust based on the layout */
-  overflow-y: auto;
+  overflow-y:hidden;
+  min-height: 400px;
 }
 
 .record {

@@ -194,6 +194,27 @@ function populateMasterTable(data, totalRecords, filters) {
   // Clear any existing records
   masterRecordsContainer.innerHTML = "";
 
+  if (totalRecords === 0) {
+    masterRecordsContainer.style.marginTop = "50px";
+    // Display the "No Records" image if there are no records
+    const noRecordsImage = document.createElement("img");
+    noRecordsImage.src = "/icons/norecords.png";
+    noRecordsImage.alt = "No Records Found";
+    noRecordsImage.style.display = "block";
+    noRecordsImage.style.margin = "auto";
+    noRecordsImage.style.maxWidth = "100%";
+    noRecordsImage.style.height = "auto";
+    
+    masterRecordsContainer.appendChild(noRecordsImage);
+
+    // Clear existing controls
+    const paginationContainer = document.getElementById("paginationControls");
+    paginationContainer.innerHTML = "";
+  
+    return; // Stop further processing since there are no records
+  }
+
+  // masterRecordsContainer.style.height = "400px";
   // Loop through the data and create record divs
   data.forEach((note, index) => {
     const recordDiv = document.createElement("div");
